@@ -54,8 +54,59 @@ async function getRepliesByPost(post) {
 }
 
 // Create a new post
-// Create a new reply
-// Delete post by post_id
-// Delete replies by reply_id
+async function createNewPost(body) {
+  const results = await pool.query(
+    `INSERT INTO posts (title, topic, body, date_created, author)
+    VALUES ($1, $2, $3, $4, $5) 
+    RETURNING *;`,
+    [body.title, body.topic, body.body, body.date_created, body.author]
+  );
+  const rows = results.rows[0];
+  return rows;
+}
 
-export { getPostsByAuthor, getPostsBySearch, getRepliesByPost };
+// Create a new reply
+async function createNewReply(body) {
+  const results = await pool.query(
+    `INSERT INTO replies (post, body, date_created, author)
+    VALUES ($1, $2, $3, $4) 
+    RETURNING *;`,
+    [body.post, body.body, body.date_created, body.author]
+  );
+  const rows = results.rows[0];
+  return rows;
+}
+
+// Delete post by post_id
+async function deletePost(id) {
+  const results = await pool.query(
+    `DELETE FROM posts
+    WHERE post_id = $1 
+    RETURNING *;`,
+    [id]
+  );
+  const rows = results.rows[0];
+  return rows;
+}
+
+// Delete replies by reply_id
+async function deleteReply(id) {
+  const results = await pool.query(
+    `DELETE FROM replies
+    WHERE reply_id = $1 
+    RETURNING *;`,
+    [id]
+  );
+  const rows = results.rows[0];
+  return rows;
+}
+
+export {
+  getPostsByAuthor,
+  getPostsBySearch,
+  getRepliesByPost,
+  createNewPost,
+  createNewReply,
+  deletePost,
+  deleteReply,
+};

@@ -4,7 +4,11 @@ const postsRouter = express.Router();
 import {
   getPostsByAuthor,
   getPostsBySearch,
-  getRepliesByPost /*, createnewPost, createNewReply, deletePost, deleteReply*/,
+  getRepliesByPost,
+  createNewPost,
+  createNewReply,
+  deletePost,
+  deleteReply,
 } from "../models/postsModels.js";
 
 // Get posts by author
@@ -43,8 +47,8 @@ postsRouter.get("/replies", async (req, res) => {
 // Create a new post
 postsRouter.post("/post", async (req, res) => {
   try {
-    // const result = await createNewPost(req.body);
-    res.json({ success: true, payload: "POST posts/post" });
+    const result = await createNewPost(req.body);
+    res.json({ success: true, payload: result });
   } catch (error) {
     console.log(error);
     res.json({ success: false, payload: "error" });
@@ -54,8 +58,8 @@ postsRouter.post("/post", async (req, res) => {
 // Create a new reply
 postsRouter.post("/reply", async (req, res) => {
   try {
-    // const result = await createNewReply(req.body);
-    res.json({ success: true, payload: "POST posts/reply" });
+    const result = await createNewReply(req.body);
+    res.json({ success: true, payload: result });
   } catch (error) {
     console.log(error);
     res.json({ success: false, payload: "error" });
@@ -65,8 +69,8 @@ postsRouter.post("/reply", async (req, res) => {
 // Delete post by post_id
 postsRouter.delete("/deletePost/:id", async (req, res) => {
   try {
-    // const result = await deletePost(req.params.id);
-    res.json({ success: true, payload: "DELETE post" });
+    const result = await deletePost(req.params.id);
+    res.json({ success: true, payload: result });
   } catch (error) {
     console.log(error);
     res.json({ success: false, payload: "error" });
@@ -76,8 +80,8 @@ postsRouter.delete("/deletePost/:id", async (req, res) => {
 // Delete replies by reply_id
 postsRouter.delete("/deleteReply/:id", async (req, res) => {
   try {
-    // const result = await deleteReply(req.params.id);
-    res.json({ success: true, payload: "DELETE reply" });
+    const result = await deleteReply(req.params.id);
+    res.json({ success: true, payload: result });
   } catch (error) {
     console.log(error);
     res.json({ success: false, payload: "error" });
