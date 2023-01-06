@@ -1,0 +1,35 @@
+{
+  "name": "bc13_final-project_back-end-locodemotives",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db-create": "node -r dotenv/config ./database/scripts/createTables.js",
+    "db-drop": "node -r dotenv/config ./database/scripts/dropTables.js",
+    "db-refill": "node -r dotenv/config .database/scripts/refillTables.js",
+    "db-reset": "node -r dotenv/config ./database/scripts/resetTables.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchoolOfCode/bc13_final-project_back-end-locodemotives.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SchoolOfCode/bc13_final-project_back-end-locodemotives/issues"
+  },
+  "homepage": "https://github.com/SchoolOfCode/bc13_final-project_back-end-locodemotives#readme",
+  "type": "module",
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.8.0"
+  }
+}
