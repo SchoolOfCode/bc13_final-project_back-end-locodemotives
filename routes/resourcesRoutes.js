@@ -1,7 +1,7 @@
 import express from "express";
 const resourcesRouter = express.Router();
 
-// import { getResources, createNewResource } from "../models/resourcesModels.js";
+// import { getResources, createNewResource, deleteResource } from "../models/resourcesModels.js";
 
 // Get resouces by topic and type
 resourcesRouter.get("/search", async (req, res) => {
@@ -19,6 +19,17 @@ resourcesRouter.post("/", async (req, res) => {
   try {
     // const result = await createNewResource(req.body);
     res.json({ success: true, payload: "POST resources" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, payload: "error" });
+  }
+});
+
+// Delete resource by resource_id
+resourcesRouter.delete("/:id", async (req, res) => {
+  try {
+    // const result = await deleteResource(req.params.id);
+    res.json({ success: true, payload: "DELETE resource" });
   } catch (error) {
     console.log(error);
     res.json({ success: false, payload: "error" });
