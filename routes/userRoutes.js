@@ -4,11 +4,12 @@ const userRouter = express.Router();
 import {
   getUserByEmail,
   getUserByName,
+  getUserById,
   newUser,
   deleteUser,
 } from "../models/userModels.js";
 
-// Get users by email
+// Get users by email, name or id
 userRouter.get("/", async (req, res) => {
   if (req.query.email != undefined) {
     try {
@@ -21,6 +22,14 @@ userRouter.get("/", async (req, res) => {
   } else if (req.query.name != undefined) {
     try {
       const result = await getUserByName(req.query.name);
+      res.json({ success: true, payload: result });
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false, payload: "error" });
+    }
+  } else if (req.query.id != undefined) {
+    try {
+      const result = await getUserById(req.query.id);
       res.json({ success: true, payload: result });
     } catch (error) {
       console.log(error);

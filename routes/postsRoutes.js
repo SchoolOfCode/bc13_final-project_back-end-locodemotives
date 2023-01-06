@@ -2,6 +2,7 @@ import express from "express";
 const postsRouter = express.Router();
 
 import {
+  getAllPosts,
   getPostsByAuthor,
   getPostsBySearch,
   getRepliesByPost,
@@ -10,6 +11,17 @@ import {
   deletePost,
   deleteReply,
 } from "../models/postsModels.js";
+
+// Get all posts
+postsRouter.get("/", async (req, res) => {
+  try {
+    const result = await getAllPosts();
+    res.json({ success: true, payload: result });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, payload: "error" });
+  }
+});
 
 // Get posts by author
 postsRouter.get("/author", async (req, res) => {

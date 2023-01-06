@@ -20,6 +20,16 @@ async function getUserByName(name) {
   return rows;
 }
 
+async function getUserById(id) {
+  const results = await pool.query(
+    `SELECT * FROM users
+    WHERE user_id = $1`,
+    [id]
+  );
+  const rows = results.rows[0];
+  return rows;
+}
+
 async function newUser(body) {
   const results = await pool.query(
     `INSERT INTO users
@@ -54,4 +64,4 @@ async function deleteUser(user_id) {
   return rows;
 }
 
-export { getUserByEmail, getUserByName, newUser, deleteUser };
+export { getUserByEmail, getUserByName, getUserById, newUser, deleteUser };

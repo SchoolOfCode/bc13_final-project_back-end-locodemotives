@@ -1,5 +1,12 @@
 import { pool } from "../database/index.js";
 
+// Get all posts
+async function getAllPosts() {
+  const results = await pool.query(`SELECT * FROM posts;`);
+  const rows = results.rows;
+  return rows;
+}
+
 // Get posts by author
 async function getPostsByAuthor(name) {
   const results = await pool.query(
@@ -102,6 +109,7 @@ async function deleteReply(id) {
 }
 
 export {
+  getAllPosts,
   getPostsByAuthor,
   getPostsBySearch,
   getRepliesByPost,

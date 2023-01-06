@@ -1,5 +1,12 @@
 import { pool } from "../database/index.js";
 
+//Get all resources
+async function getAllResources() {
+  const results = await pool.query(`SELECT ^ FROM resources;`);
+  const rows = results.rows;
+  return rows;
+}
+
 // Get resources by searching using topic and type
 async function getResources(topic, type) {
   if (type != null && topic == null) {
@@ -51,4 +58,4 @@ async function deleteResource(id) {
   return rows;
 }
 
-export { getResources, createNewResource, deleteResource };
+export { getAllResources, getResources, createNewResource, deleteResource };
