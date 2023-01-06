@@ -1,13 +1,17 @@
 import express from "express";
 const postsRouter = express.Router();
 
-// import { getPostsByAuthor, getPostsBySearch, getRepliesBypost, createnewPost, createNewReply, deletePost, deleteReply } from "../models/postsModels.js";
+import {
+  getPostsByAuthor,
+  getPostsBySearch,
+  getRepliesByPost /*, createnewPost, createNewReply, deletePost, deleteReply*/,
+} from "../models/postsModels.js";
 
 // Get posts by author
 postsRouter.get("/author", async (req, res) => {
   try {
-    // const result = await getPostsByAuthor(req.query.author);
-    res.json({ success: true, payload: "GET posts/author" });
+    const result = await getPostsByAuthor(req.query.author);
+    res.json({ success: true, payload: result });
   } catch (error) {
     console.log(error);
     res.json({ success: false, payload: "error" });
@@ -17,8 +21,8 @@ postsRouter.get("/author", async (req, res) => {
 // Get posts by searching using title and type
 postsRouter.get("/search", async (req, res) => {
   try {
-    // const result = await getPostsBySearch(req.query.title, req.query.topic);
-    res.json({ success: true, payload: "GET posts/search" });
+    const result = await getPostsBySearch(req.query.title, req.query.topic);
+    res.json({ success: true, payload: result });
   } catch (error) {
     console.log(error);
     res.json({ success: false, payload: "error" });
@@ -28,8 +32,8 @@ postsRouter.get("/search", async (req, res) => {
 // Get replies for a post
 postsRouter.get("/replies", async (req, res) => {
   try {
-    // const result = await getRepliesByPost(req.query.post);
-    res.json({ success: true, payload: "GET posts/replies" });
+    const result = await getRepliesByPost(req.query.post);
+    res.json({ success: true, payload: result });
   } catch (error) {
     console.log(error);
     res.json({ success: false, payload: "error" });
