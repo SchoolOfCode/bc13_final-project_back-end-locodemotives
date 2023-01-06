@@ -23,7 +23,7 @@ async function getPostsBySearch(title, topic) {
     );
     const rows = results.rows;
     return rows;
-  } else if ((title = null && topic != null)) {
+  } else if (title == null && topic != null) {
     const results = await pool.query(
       `SELECT * FROM posts
         WHERE topic = $1;`,
