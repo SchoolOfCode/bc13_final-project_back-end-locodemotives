@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../../app";
+import app, { server } from "../../app";
 import { expect, test } from "@jest/globals";
 
 import { resetTables } from "../../database/helpers.js";
@@ -12,6 +12,7 @@ beforeEach(async () => {
 afterAll(async () => {
   await resetTables();
   pool.end();
+  server.close();
 });
 
 describe("Get requests for posts", () => {

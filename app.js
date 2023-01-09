@@ -17,7 +17,7 @@ app.use("/user", userRouter);
 app.use("/posts", postsRouter);
 app.use("/resources", resourcesRouter);
 
-app.listen(port, () => {
+export const server = app.listen(port, () => {
   console.log(`Server running and listening on port ${port}`);
 });
 
