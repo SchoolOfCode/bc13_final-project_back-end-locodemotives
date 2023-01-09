@@ -2,14 +2,14 @@ import { pool } from "../database/index.js";
 
 //Get all resources
 async function getAllResources() {
-  const results = await pool.query(`SELECT ^ FROM resources;`);
+  const results = await pool.query(`SELECT * FROM resources;`);
   const rows = results.rows;
   return rows;
 }
 
 // Get resources by searching using topic and type
 async function getResources(topic, type) {
-  if (type != null && topic == null) {
+  if (type != "null" && topic == "null") {
     const results = await pool.query(
       `SELECT * FROM resources
         WHERE type = $1`,
@@ -17,7 +17,7 @@ async function getResources(topic, type) {
     );
     const rows = results.rows;
     return rows;
-  } else if (type == null && topic != null) {
+  } else if (type == "null" && topic != "null") {
     const results = await pool.query(
       `SELECT * FROM resources
         WHERE topic = $1;`,
@@ -25,7 +25,7 @@ async function getResources(topic, type) {
     );
     const rows = results.rows;
     return rows;
-  } else if (type != null && topic != null) {
+  } else if (type != "null" && topic != "null") {
     const results = await pool.query(
       `SELECT * FROM resources
             WHERE type = $1 AND topic = $2;`,
