@@ -117,3 +117,31 @@ describe("Get requests for resources", () => {
     });
   });
 });
+
+describe("Post requests for resources", () => {
+  test("post a new resource", async () => {
+    const response = await request(app).post("/resources").send({
+      title: "Testing new resource",
+      description: "This is testing for a new resource",
+      link: "www.thisisatest.com",
+      topic: "Testing",
+      type: "Website",
+      author: 1,
+      date_created: "2012-12-21",
+    });
+    expect(response.status).toEqual(200);
+    expect(response.body).toStrictEqual({
+      success: true,
+      payload: {
+        resource_id: 3,
+        title: "Testing new resource",
+        description: "This is testing for a new resource",
+        link: "www.thisisatest.com",
+        topic: "Testing",
+        type: "Website",
+        author: 1,
+        date_created: expect.any(String),
+      },
+    });
+  });
+});

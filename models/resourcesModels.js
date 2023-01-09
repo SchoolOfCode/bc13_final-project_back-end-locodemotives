@@ -38,10 +38,18 @@ async function getResources(topic, type) {
 
 async function createNewResource(body) {
   const results = await pool.query(
-    `INSERT INTO rsources (title, description, link, topic, type, author, date_created)
+    `INSERT INTO resources (title, description, link, topic, type, author, date_created)
     VALUES ($1, $2, $3, $4, $5, $6, $7) 
     RETURNING *;`,
-    [body.post, body.body, body.date_created, body.author]
+    [
+      body.title,
+      body.description,
+      body.link,
+      body.topic,
+      body.type,
+      body.author,
+      body.date_created,
+    ]
   );
   const rows = results.rows[0];
   return rows;
