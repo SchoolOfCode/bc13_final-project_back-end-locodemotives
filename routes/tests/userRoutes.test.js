@@ -1,16 +1,19 @@
 import request from "supertest";
 import app from "../../app";
 import { expect, test } from "@jest/globals";
-import { response } from "express";
 
-// import { resetTables } from "../../database/helpers.js";
-// import { pool } from "../../database/index";
+import { resetTables } from "../../database/helpers.js";
+import { pool } from "../../database/index";
 
-// beforeEach(async () => {
-//   await resetTables();
-// });
+beforeEach(async () => {
+  await resetTables();
+});
 
-test("get user by id", async () => {
+afterAll(() => {
+  pool.end();
+});
+
+test("Get user by id", async () => {
   const response = await request(app).get("/user/?id=1");
   expect(response.status).toEqual(200);
   expect(response.body).toStrictEqual({
@@ -25,7 +28,3 @@ test("get user by id", async () => {
     },
   });
 });
-
-// afterAll(() => {
-//   pool.end();
-// });
