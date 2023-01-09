@@ -1,4 +1,4 @@
-import { pool } from "./index";
+import { pool } from "./index.js";
 
 // create tables
 async function createTables() {
@@ -12,7 +12,7 @@ async function createTables() {
             team TEXT,
             name TEXT
         );
-        CREATE TABLE posts
+    CREATE TABLE posts
         (
 	        post_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	        title TEXT,
@@ -21,7 +21,7 @@ async function createTables() {
             date_created DATE,
   	        author INT references users(user_id)
         );
-        CREATE TABLE replies
+    CREATE TABLE replies
         (
 	        reply_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         	post INT references posts(post_id),
@@ -29,7 +29,7 @@ async function createTables() {
         	body TEXT,
             date_created DATE
         );
-        CREATE TABLE resources
+    CREATE TABLE resources
         (
 	        resource_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	        title TEXT,
@@ -97,7 +97,7 @@ async function refillTables() {
         (
             'Flex-box or grid for onboarding dashboard',
             'CSS',
-            'Should I used flex-box or grid when creating the onboarding dashboard app?'
+            'Should I used flex-box or grid when creating the onboarding dashboard app?',
             '2023-01-06',
             3
         );
@@ -136,7 +136,7 @@ async function refillTables() {
         ),
         (
             'FreeCodeCamp - (New) Responsive Web Design',
-            'In this Responsive Web Design Certification, you'll learn the languages that developers use to build webpages: HTML (Hypertext Markup Language) for content, and CSS (Cascading Style Sheets) for design.',
+            'In this Responsive Web Design Certification, you''ll learn the languages that developers use to build webpages: HTML (Hypertext Markup Language) for content, and CSS (Cascading Style Sheets) for design.',
             'https://www.freecodecamp.org/learn/2022/responsive-web-design/',
             'Digital Development',
             'Course',

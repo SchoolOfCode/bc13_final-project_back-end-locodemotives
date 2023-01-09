@@ -20,9 +20,9 @@ async function getPostsByAuthor(name) {
   return rows;
 }
 
-// Get posts by searching using title and type
+// Get posts by searching using title and topic
 async function getPostsBySearch(title, topic) {
-  if (title != null && topic == null) {
+  if (title != "null" && topic == "null") {
     const results = await pool.query(
       `SELECT * FROM posts
         WHERE LOWER(title) LIKE LOWER('%'||$1||'%')`,
@@ -30,7 +30,7 @@ async function getPostsBySearch(title, topic) {
     );
     const rows = results.rows;
     return rows;
-  } else if (title == null && topic != null) {
+  } else if (title == "null" && topic != "null") {
     const results = await pool.query(
       `SELECT * FROM posts
         WHERE topic = $1;`,
@@ -38,7 +38,7 @@ async function getPostsBySearch(title, topic) {
     );
     const rows = results.rows;
     return rows;
-  } else if (title != null && topic != null) {
+  } else if (title != "null" && topic != "null") {
     const results = await pool.query(
       `SELECT * FROM posts
             WHERE LOWER(title) LIKE LOWER('%'||$1||'%') AND topic = $2;`,

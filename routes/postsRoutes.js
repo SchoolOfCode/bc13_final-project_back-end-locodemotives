@@ -34,7 +34,7 @@ postsRouter.get("/author", async (req, res) => {
   }
 });
 
-// Get posts by searching using title and type
+// Get posts by searching using title and topic
 postsRouter.get("/search", async (req, res) => {
   try {
     const result = await getPostsBySearch(req.query.title, req.query.topic);

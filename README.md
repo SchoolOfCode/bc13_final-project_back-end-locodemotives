@@ -43,6 +43,14 @@ Start the development server
   npm run dev
 ```
 
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```
+
 ## API Reference
 
 ![](readme_image.png)
