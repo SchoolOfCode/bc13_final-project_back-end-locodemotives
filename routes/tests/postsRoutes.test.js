@@ -109,3 +109,22 @@ describe("Get requests for posts", () => {
     });
   });
 });
+
+describe("Get replies for posts", () => {
+  test("Get all replies for a post", async () => {
+    const response = await request(app).get("/posts/replies/?post=1");
+    expect(response.status).toEqual(200);
+    expect(response.body).toStrictEqual({
+      success: true,
+      payload: [
+        {
+          reply_id: 1,
+          post: 1,
+          author: 2,
+          body: "Use references table_name(table_item)",
+          date_created: expect.any(String),
+        },
+      ],
+    });
+  });
+});
