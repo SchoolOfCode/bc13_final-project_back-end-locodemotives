@@ -49,12 +49,63 @@ describe("Get requests for posts", () => {
     });
   });
 
-  //   test("Get posts by searching using title and type", async () => {
-  //     const response = await request(app).get("/posts/author/");
-  //     expect(response.status).toEqual(200);
-  //     expect(response.body).toStrictEqual({
-  //       success: true,
-  //       payload:
-  //     });
-  //   });
+  test("Get posts by searching using title and topic", async () => {
+    const response = await request(app).get(
+      "/posts/search/?title=PostgreSQL&topic=PostgreSQL"
+    );
+    expect(response.status).toEqual(200);
+    expect(response.body).toStrictEqual({
+      success: true,
+      payload: [
+        {
+          title: "PostgreSQL foreign keys",
+          topic: "PostgreSQL",
+          body: "How to do foreign keys in postgreSQL?",
+          date_created: expect.any(String),
+          author: 1,
+          post_id: 1,
+        },
+      ],
+    });
+  });
+
+  test("Get posts by searching using title", async () => {
+    const response = await request(app).get(
+      "/posts/search/?title=PostgreSQL&topic=null"
+    );
+    expect(response.status).toEqual(200);
+    expect(response.body).toStrictEqual({
+      success: true,
+      payload: [
+        {
+          title: "PostgreSQL foreign keys",
+          topic: "PostgreSQL",
+          body: "How to do foreign keys in postgreSQL?",
+          date_created: expect.any(String),
+          author: 1,
+          post_id: 1,
+        },
+      ],
+    });
+  });
+
+  test("Get posts by searching using topic", async () => {
+    const response = await request(app).get(
+      "/posts/search/?title=null&topic=PostgreSQL"
+    );
+    expect(response.status).toEqual(200);
+    expect(response.body).toStrictEqual({
+      success: true,
+      payload: [
+        {
+          title: "PostgreSQL foreign keys",
+          topic: "PostgreSQL",
+          body: "How to do foreign keys in postgreSQL?",
+          date_created: expect.any(String),
+          author: 1,
+          post_id: 1,
+        },
+      ],
+    });
+  });
 });
