@@ -2,7 +2,9 @@ import { pool } from "../database/index.js";
 
 //Get all resources
 async function getAllResources() {
-  const results = await pool.query(`SELECT * FROM resources;`);
+  const results = await pool.query(
+    `SELECT * FROM resources ORDER BY date_created DESC;`
+  );
   const rows = results.rows;
   return rows;
 }
@@ -12,7 +14,8 @@ async function getResources(topic, type) {
   if (type != "null" && topic == "null") {
     const results = await pool.query(
       `SELECT * FROM resources
-        WHERE type = $1`,
+        WHERE type = $1
+        ORDER BY date_created DESC;`,
       [type]
     );
     const rows = results.rows;
@@ -20,7 +23,8 @@ async function getResources(topic, type) {
   } else if (type == "null" && topic != "null") {
     const results = await pool.query(
       `SELECT * FROM resources
-        WHERE topic = $1;`,
+        WHERE topic = $1
+        ORDER BY date_created DESC;`,
       [topic]
     );
     const rows = results.rows;
@@ -28,7 +32,8 @@ async function getResources(topic, type) {
   } else if (type != "null" && topic != "null") {
     const results = await pool.query(
       `SELECT * FROM resources
-            WHERE type = $1 AND topic = $2;`,
+            WHERE type = $1 AND topic = $2
+            ORDER BY date_created DESC;`,
       [type, topic]
     );
     const rows = results.rows;

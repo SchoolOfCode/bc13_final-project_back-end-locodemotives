@@ -2,7 +2,9 @@ import { pool } from "../database/index.js";
 
 // Get all posts
 async function getAllPosts() {
-  const results = await pool.query(`SELECT * FROM posts;`);
+  const results = await pool.query(
+    `SELECT * FROM posts ORDER BY date_created DESC;`
+  );
   const rows = results.rows;
   return rows;
 }
@@ -13,7 +15,8 @@ async function getPostsByAuthor(name) {
     `SELECT * FROM users
     INNER JOIN posts
     ON users.user_id = posts.author
-    WHERE LOWER (users.name) LIKE LOWER ('%'||$1||'%')`,
+    WHERE LOWER (users.name) LIKE LOWER ('%'||$1||'%')
+    ORDER BY posts.date_created DESC;`,
     [name]
   );
   const rows = results.rows;
@@ -25,7 +28,8 @@ async function getPostsBySearch(title, topic) {
   if (title != "null" && topic == "null") {
     const results = await pool.query(
       `SELECT * FROM posts
-        WHERE LOWER(title) LIKE LOWER('%'||$1||'%')`,
+        WHERE LOWER(title) LIKE LOWER('%'||$1||'%')
+        ORDER BY date_created DESC;`,
       [title]
     );
     const rows = results.rows;
@@ -33,7 +37,8 @@ async function getPostsBySearch(title, topic) {
   } else if (title == "null" && topic != "null") {
     const results = await pool.query(
       `SELECT * FROM posts
-        WHERE topic = $1;`,
+        WHERE topic = $1
+        ORDER BY date_created DESC;`,
       [topic]
     );
     const rows = results.rows;
@@ -41,7 +46,9 @@ async function getPostsBySearch(title, topic) {
   } else if (title != "null" && topic != "null") {
     const results = await pool.query(
       `SELECT * FROM posts
-            WHERE LOWER(title) LIKE LOWER('%'||$1||'%') AND topic = $2;`,
+            WHERE LOWER(title) LIKE LOWER('%'||$1||'%') 
+              AND topic = $2
+            ORDER BY date_created DESC;`,
       [title, topic]
     );
     const rows = results.rows;
@@ -53,7 +60,8 @@ async function getPostsBySearch(title, topic) {
 async function getRepliesByPost(post) {
   const results = await pool.query(
     `SELECT * FROM replies
-    WHERE post = $1`,
+    WHERE post = $1 
+    ORDER BY date_created DESC`,
     [post]
   );
   const rows = results.rows;
