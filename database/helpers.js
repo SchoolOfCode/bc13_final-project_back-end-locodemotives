@@ -78,7 +78,7 @@ async function refillTables() {
             'Ben Lloyd'
         ),
         (
-            'cameron@mynett@.com',
+            'cameron@mynett.com',
             'password',
             'https://media.licdn.com/dms/image/C4E03AQEXLX9qq9xPyg/profile-displayphoto-shrink_100_100/0/1646163526730?e=1678320000&v=beta&t=SrynGn8LHHUp9ICNs5c8RvF8XKvU5RPdCEipg0k2j0E',
             'Business Analysis',
