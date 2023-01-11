@@ -21,7 +21,7 @@ To run this project, you will need to add the following environment variables to
 
 ## Deployment
 
-This project is deployed at ...
+This project is deployed at https://locodemotive.onrender.com
 
 ## Run Locally
 
