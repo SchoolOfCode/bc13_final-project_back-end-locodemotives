@@ -89,14 +89,14 @@ async function refillTables() {
         VALUES
         (
 	        'PostgreSQL foreign keys',
-	        'PostgreSQL',
+	        'DevOps',
         	'How to do foreign keys in postgreSQL?',
             '2023-01-06',
          	1
         ),
         (
             'Flex-box or grid for onboarding dashboard',
-            'CSS',
+            'Digital Development',
             'Should I used flex-box or grid when creating the onboarding dashboard app?',
             '2023-01-06',
             3
