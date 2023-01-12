@@ -33,7 +33,7 @@ describe("Get requests for posts", () => {
       payload: [
         {
           title: "Flex-box or grid for onboarding dashboard",
-          topic: "CSS",
+          topic: "Digital Development",
           body: "Should I used flex-box or grid when creating the onboarding dashboard app?",
           date_created: expect.any(String),
           author: 3,
@@ -51,7 +51,7 @@ describe("Get requests for posts", () => {
 
   test("Get posts by searching using title and topic", async () => {
     const response = await request(app).get(
-      "/posts/search/?title=PostgreSQL&topic=PostgreSQL"
+      "/posts/search/?title=PostgreSQL&topic=DevOps"
     );
     expect(response.status).toEqual(200);
     expect(response.body).toStrictEqual({
@@ -59,7 +59,7 @@ describe("Get requests for posts", () => {
       payload: [
         {
           title: "PostgreSQL foreign keys",
-          topic: "PostgreSQL",
+          topic: "DevOps",
           body: "How to do foreign keys in postgreSQL?",
           date_created: expect.any(String),
           author: 1,
@@ -79,7 +79,7 @@ describe("Get requests for posts", () => {
       payload: [
         {
           title: "PostgreSQL foreign keys",
-          topic: "PostgreSQL",
+          topic: "DevOps",
           body: "How to do foreign keys in postgreSQL?",
           date_created: expect.any(String),
           author: 1,
@@ -91,7 +91,7 @@ describe("Get requests for posts", () => {
 
   test("Get posts by searching using topic", async () => {
     const response = await request(app).get(
-      "/posts/search/?title=null&topic=PostgreSQL"
+      "/posts/search/?title=null&topic=DevOps"
     );
     expect(response.status).toEqual(200);
     expect(response.body).toStrictEqual({
@@ -99,7 +99,7 @@ describe("Get requests for posts", () => {
       payload: [
         {
           title: "PostgreSQL foreign keys",
-          topic: "PostgreSQL",
+          topic: "DevOps",
           body: "How to do foreign keys in postgreSQL?",
           date_created: expect.any(String),
           author: 1,
@@ -133,7 +133,7 @@ describe("Post requests for new post or reply", () => {
   test("Create new post", async () => {
     const response = await request(app).post("/posts/post").send({
       title: "Testing new post",
-      topic: "Testing",
+      topic: "DevOps",
       body: "How to create a new post?",
       date_created: "2023-01-09",
       author: 1,
@@ -144,7 +144,7 @@ describe("Post requests for new post or reply", () => {
       payload: {
         post_id: 3,
         title: "Testing new post",
-        topic: "Testing",
+        topic: "DevOps",
         body: "How to create a new post?",
         date_created: expect.any(String),
         author: 1,
