@@ -61,7 +61,7 @@ async function getRepliesByPost(post) {
   const results = await pool.query(
     `SELECT * FROM replies
     WHERE post = $1 
-    ORDER BY date_created DESC`,
+    ORDER BY date_created DESC;`,
     [post]
   );
   const rows = results.rows;
@@ -72,7 +72,8 @@ async function getRepliesByPost(post) {
 async function getRepliesByUser(user) {
   const results = await pool.query(
     `SELECT * FROM replies
-    WHERE author = $1`,
+    WHERE author = $1 
+    ORDER BY date_created DESC;`,
     [user]
   );
   const rows = results.rows;

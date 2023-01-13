@@ -46,25 +46,24 @@ postsRouter.get("/search", async (req, res) => {
   }
 });
 
-// Get replies for a post
+// Get replies for a post or user
 postsRouter.get("/replies", async (req, res) => {
-  try {
-    const result = await getRepliesByPost(req.query.post);
-    res.json({ success: true, payload: result });
-  } catch (error) {
-    console.log(error);
-    res.json({ success: false, payload: "error" });
-  }
-});
-
-// Get replies for a user
-postsRouter.get("/replies", async (req, res) => {
-  try {
-    const result = await getRepliesByUser(req.query.user);
-    res.json({ success: true, payload: result });
-  } catch (error) {
-    console.log(error);
-    res.json({ success: false, payload: "error" });
+  if (req.query.post !== undefined) {
+    try {
+      const result = await getRepliesByPost(req.query.post);
+      res.json({ success: true, payload: result });
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false, payload: "error" });
+    }
+  } else if (req.query.user !== undefined) {
+    try {
+      const result = await getRepliesByUser(req.query.user);
+      res.json({ success: true, payload: result });
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false, payload: "error" });
+    }
   }
 });
 
