@@ -68,6 +68,17 @@ async function getRepliesByPost(post) {
   return rows;
 }
 
+// Get replies for a user
+async function getRepliesByUser(user) {
+  const results = await pool.query(
+    `SELECT * FROM replies
+    WHERE author = $1`,
+    [user]
+  );
+  const rows = results.rows;
+  return rows;
+}
+
 // Create a new post
 async function createNewPost(body) {
   const results = await pool.query(
@@ -121,6 +132,7 @@ export {
   getPostsByAuthor,
   getPostsBySearch,
   getRepliesByPost,
+  getRepliesByUser,
   createNewPost,
   createNewReply,
   deletePost,
