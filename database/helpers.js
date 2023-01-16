@@ -18,7 +18,7 @@ async function createTables() {
 	        title TEXT,
 	        topic TEXT,
 	        body TEXT,
-            date_created DATE,
+            date_created timestamp,
   	        author INT references users(user_id)
         );
     CREATE TABLE replies
@@ -27,7 +27,7 @@ async function createTables() {
         	post INT references posts(post_id),
         	author INT references users(user_id),
         	body TEXT,
-            date_created DATE
+            date_created timestamp
         );
     CREATE TABLE resources
         (
@@ -38,7 +38,7 @@ async function createTables() {
         	topic TEXT,
         	type TEXT,
          	author INT references users(user_id),
-         	date_created DATE
+         	date_created timestamp
         );`
   );
 }
