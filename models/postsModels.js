@@ -23,6 +23,18 @@ async function getPostsByAuthor(name) {
   return rows;
 }
 
+// Get posts by ID
+async function getPostsByID(id) {
+  const results = await pool.query(
+    `SELECT * FROM posts
+    WHERE post_id = $1
+    ORDER BY posts.date_created DESC;`,
+    [id]
+  );
+  const rows = results.rows;
+  return rows;
+}
+
 // Get posts by searching using title and topic
 async function getPostsBySearch(title, topic) {
   if (title != "null" && topic == "null") {
@@ -132,6 +144,7 @@ export {
   getAllPosts,
   getPostsByAuthor,
   getPostsBySearch,
+  getPostsByID,
   getRepliesByPost,
   getRepliesByUser,
   createNewPost,
