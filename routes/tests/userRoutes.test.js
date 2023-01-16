@@ -26,7 +26,7 @@ describe("Get requests for users", () => {
         email: "roman@hadjisergis.com",
         password: "password",
         image_url: expect.any(String),
-        team: "Support Services",
+        team: "Marketing",
         name: "Roman Hadjisergis",
       },
     });
