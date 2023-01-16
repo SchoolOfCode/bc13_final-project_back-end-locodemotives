@@ -172,7 +172,7 @@ async function refillTables() {
         ),
         (
 	        'Rail Technology Magazine',
-            'Rail Technology Magazine is Britain's rail industry media leader with 22 years'' worth of experience when it comes to producing an industry-leading magazine.',
+            'Rail Technology Magazine is Britain''s rail industry media leader with 22 years'' worth of experience when it comes to producing an industry-leading magazine.',
   	        'https://www.railtechnologymagazine.com/',
   	        'General',
   	        'Website',
