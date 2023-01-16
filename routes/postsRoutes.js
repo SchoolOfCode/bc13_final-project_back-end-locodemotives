@@ -5,6 +5,7 @@ import {
   getAllPosts,
   getPostsByAuthor,
   getPostsBySearch,
+  getPostsByID,
   getRepliesByPost,
   getRepliesByUser,
   createNewPost,
@@ -28,6 +29,17 @@ postsRouter.get("/", async (req, res) => {
 postsRouter.get("/author", async (req, res) => {
   try {
     const result = await getPostsByAuthor(req.query.author);
+    res.json({ success: true, payload: result });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, payload: "error" });
+  }
+});
+
+// Get posts by ID
+postsRouter.get("/id", async (req, res) => {
+  try {
+    const result = await getPostsByID(req.query.id);
     res.json({ success: true, payload: result });
   } catch (error) {
     console.log(error);

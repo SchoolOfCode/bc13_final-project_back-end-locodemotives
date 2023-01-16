@@ -60,7 +60,7 @@ async function refillTables() {
             'roman@hadjisergis.com',
             'password',
             'https://media.licdn.com/dms/image/C4E03AQESW-XZpUTkag/profile-displayphoto-shrink_200_200/0/1661709031700?e=1678320000&v=beta&t=bTtCI6uptdJ4gvZ1zYcfU_GGnOzI3xtIqEw_trwSI9o',
-            'Support Services',
+            'Marketing',
             'Roman Hadjisergis'
         ),
         (
